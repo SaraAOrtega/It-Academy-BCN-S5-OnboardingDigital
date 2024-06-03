@@ -1,0 +1,33 @@
+
+<div class="card shadow rounded-5">
+  <div class="card-head h-100" [style.background-color]="consejos[currentStep].bgcolor" [@animSlider]="currentStep">
+    <img [src]="consejos[currentStep].img" class="card-img-top py-5 my-4" alt="">
+  </div>
+  <div class="card-body">
+    <h6 class="card-title"><b>{{ consejos[currentStep].title }}</b></h6>
+    <p class="card-text">{{ consejos[currentStep].description }}</p>
+  </div>
+  <div class="controls-container mb-4 px-4">
+    <div class="left-controls">
+      @for(consejo of consejos; track $index){
+        <div class="dot-inactive"
+        [class.active]= "$index === currentStep"
+        (click)="selectCard($index)"
+      ></div>
+    }
+    </div>
+
+    <div class="right-controls">
+      <div> 
+        @if(currentStep > 0) {
+          <button (click)="back()" class="btn button-left"><mat-icon>arrow_back</mat-icon></button>
+        }
+        @if (currentStep < consejos.length -1){
+          <button (click)="next()" class="btn button-right"><mat-icon>arrow_forward</mat-icon></button>
+        }
+
+      </div> 
+  </div>
+
+
+
